@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" id="file-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" id="file-input" name="document">
+        <button type="submit" id="submit-file">Upload</button>
+    </form>
+    <p>{{ res }}</p>
+</body>
+</html>

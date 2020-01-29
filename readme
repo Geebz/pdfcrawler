@@ -1,0 +1,42 @@
+Hi, MWDN Team
+
+I decided to make Foreign Key relational instead of ManyToMany since it’s easier to do mass creation of objects and the logic of the code is less complicated.
+If this were a solution on the project or production, I would choose ManyToMany. Here I made this decision to optimise elapsed time.
+
+I choose PyPDF2 library for parsing PDF documents as it is one of the most popular libraries which supports Python2 and has adequate documentation.
+There were also other variants, but they support only Python 3.
+
+I did exactly the get-all-urls and get-urls / <document_name> method, and not get-urls / and get-urls / <document_name> because these methods return a different data structure.
+If they had the same structure, I would choose second option.
+
+As far as I understand the 6th task, a self-written middleware will help in solving this problem, which returns False every time when the response status is not 200.
+
+
+
+Examples:
+
+Method: file-upload/
+Return example:
+    {"status": true, "data": {"urls_created": 0, "filename": "resume_2020.pdf"}}
+
+Method: get-documents/
+Return example:
+    {"status": true, "data": [{"urls_count": 7, "document_name": "resume_update.pdf", "document_id": 4},
+    {"urls_count": 5, "document_name": "resume_2020.pdf", "document_id": 3}]}
+
+Method: get-urls/(?P<document_name>.+)/
+        get-urls/resume_update.pdf/
+
+Return example:
+    {"status": true,
+    "data": ["https://github.com/Geebz/Crypto_rr", "https://github.com/Geebz", "https://www.coursera.org/learn/python-data/", "https://www.coursera.org/learn/python-databases/", "https://www.facebook.com/geebzi", "https://www.coursera.org/learn/python-network-data/", "https://github.com/Geebz/evo-hellobob"]
+    }
+
+Method: get-all-urls/
+Return example:
+    {"status": true,
+    "data": [{"url_name": "https://github.com/Geebz/evo-hellobob", "document_count": 1},
+     {"url_name": "https://www.coursera.org/learn/python-network-data/", "document_count": 2},
+     {"url_name": "https://github.com/Geebz", "document_count": 2},
+     {"url_name": "https://github.com/Geebz/Crypto_rr", "document_count": 1},
+     {"url_name": "https://www.facebook.com/geebzi", "document_count": 2}]}
